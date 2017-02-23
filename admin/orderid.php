@@ -180,7 +180,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 $tag_result = sqlsrv_query( $conn,$tag_sql);
 
 while ($tag_row = mysqli_fetch_array($tag_result)) {
-	
+	echo $tag_row['deviceID'];
 ?> 
 <td>
 
