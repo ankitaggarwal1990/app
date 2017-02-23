@@ -176,16 +176,16 @@ catch (PDOException $e) {
 $connectionInfo = array("UID" => "trident@trident1", "pwd" => "password@123", "Database" => "database_azure", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:trident1.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
-	echo $tag_sql = "SELECT * FROM runtime_data where TagID='$rfid_id'";
+$tag_sql = "SELECT * FROM runtime_data where TagID='$rfid_id'";
 $tag_result = sqlsrv_query( $conn,$tag_sql);
 
 while ($tag_row = sqlsrv_fetch_array($tag_result)) {
-	echo $tag_row['deviceID'];
+	echo $tag_row['DEVICEID'];
 ?> 
 <td>
 
- <?php	if($tag_row['deviceID']==""){echo "dsadasf";}
- else{echo "<img src='../images/check.png' alt='HALDIRAM'>";}
+ <?php	//if($tag_row['deviceID']==""){echo "<img src='../images/check.png' alt='HALDIRAM'>";}
+ //else{echo "<img src='../images/check.png' alt='HALDIRAM'>";}
 }
 ?>
 </td>
