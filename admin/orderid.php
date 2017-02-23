@@ -179,7 +179,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 	echo $tag_sql = "SELECT * FROM runtime_data where TagID='$rfid_id'";
 $tag_result = sqlsrv_query( $conn,$tag_sql);
 
-while ($tag_row = mysqli_fetch_array($tag_result)) {
+while ($tag_row = sqlsrv_fetch_array($tag_result)) {
 	echo $tag_row['deviceID'];
 ?> 
 <td>
