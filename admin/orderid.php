@@ -184,7 +184,7 @@ while ($tag_row = sqlsrv_fetch_array( $tag_result, SQLSRV_FETCH_ASSOC)) {
 ?> 
 <td>
 
- <?php	if($tag_row['deviceID']==""){echo "";}
+ <?php	if($tag_row['deviceid']==""){echo "";}
  else{echo "<img src='../images/check.png' alt='HALDIRAM'>";}
 }
 ?>
