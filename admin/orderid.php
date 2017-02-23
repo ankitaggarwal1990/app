@@ -180,7 +180,7 @@ $tag_sql = "SELECT * FROM runtime_data where TagID='$rfid_id'";
 $tag_result = sqlsrv_query( $conn,$tag_sql);
 
 while ($tag_row = sqlsrv_fetch_array( $tag_result, SQLSRV_FETCH_ASSOC)) {
-	echo $tag_row['DEVICEID'];
+	echo $tag_row['deviceid'];
 ?> 
 <td>
 
