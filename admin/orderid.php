@@ -180,12 +180,12 @@ $tag_sql = "SELECT * FROM runtime_data where TagID='$rfid_id'";
 $tag_result = sqlsrv_query( $conn,$tag_sql);
 
 while ($tag_row = sqlsrv_fetch_array( $tag_result, SQLSRV_FETCH_ASSOC)) {
-	echo $tag_row['deviceid'];
+	//echo $tag_row['deviceid'];
 ?> 
 <td>
 
- <?php	//if($tag_row['deviceID']==""){echo "<img src='../images/check.png' alt='HALDIRAM'>";}
- //else{echo "<img src='../images/check.png' alt='HALDIRAM'>";}
+ <?php	if($tag_row['deviceID']==""){echo "";}
+ else{echo "<img src='../images/check.png' alt='HALDIRAM'>";}
 }
 ?>
 </td>
