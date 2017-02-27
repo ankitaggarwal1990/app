@@ -15,9 +15,9 @@ $serverName = "tcp:trident1.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 //$con = mysqli_connect('127.0.0.1:49646','azure','6#vWHD_$','localdb');
 //$con = mysqli_connect('localhost','root','','database');
-if (!$con) {
-    die('Could not connect: ' . mysqli_error($con));
-}
+//if (!$con) {
+//    die('Could not connect: ' . mysqli_error($con));
+//}
 
 
 ?>
