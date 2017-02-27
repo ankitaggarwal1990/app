@@ -27,7 +27,7 @@ $weight = $_POST['weight'];
 	
 	//mysql_select_db('database');
 	//$retval = mysql_query($query,$conn);
-	$query1 = $dbh->exec($query);
+	$query1 = sqlsrv_query($conn,$query);
 	
 	
 	if($query1)
@@ -52,7 +52,7 @@ $phone_number   = $_POST[phonenumber];
 	
 	//mysql_select_db('database');
 	//$retval = mysql_query($query,$conn);
-	$query1 = $dbh->exec($query);
+	$query1 = sqlsrv_query($conn,$query);
 	
 	
 	if($query1)
@@ -81,7 +81,7 @@ $devicenames   = $_POST[devicenames];
 	
 	//mysql_select_db('database');
 	//$retval = mysql_query($query,$conn);
-	$query1 = $dbh->exec($query);
+	$query1 = sqlsrv_query($conn,$query);
 	
 	
 	if($query1)
@@ -108,7 +108,7 @@ $retailername = $_POST[retailername];
 	
 	//mysql_select_db('database');
 	//$retval = mysql_query($query,$conn);
-	$query1 = $dbh->exec($query);
+	$query1 = sqlsrv_query($conn,$query);
 	
 	
 	if($query1)
@@ -138,7 +138,7 @@ $contact_no = $_POST[contact_no];
 	
 	//mysql_select_db('database');
 	//$retval = mysql_query($query,$conn);
-	$query1 = $dbh->exec($query);
+	$query1 = sqlsrv_query($conn,$query);
 	
 	
 	if($query1)
@@ -164,16 +164,16 @@ $result = mysqli_query($con,$sql);
 
 
 $query2 = "SELECT rfid_id FROM rfid_details where status=0";
-$result2 = mysqli_query($con,$query2);
+$result2 = sqlsrv_query($conn,$query2);
 $orderid =0;
-while($row2 = mysqli_fetch_array($result2)) {
+while($row2 = sqlsrv_fetch_array($result2)) {
  echo $orderid = $row2['order_id'];
 }
 	
 	$orderid= $orderid + 1;
 
 echo $orderid;
-while($row = mysqli_fetch_array($result)) {
+while($row = sqlsrv_fetch_array($result)) {
 	echo $row['productID'];
 	
 	echo $product = $row['productID'];
@@ -182,7 +182,7 @@ while($row = mysqli_fetch_array($result)) {
 		echo $quantity = $_POST[$quantity1];
 		$sql = "UPDATE `rfid_details` SET `rfid_id`=[value-1],`type`=[value-2],`product_id`=[value-3],`status`=[value-4] ";
 		
-		$result1 = mysqli_query($con,$sql);
+		$result1 = sqlsrv_query($conn,$sql);
 		if($result1){ echo "Submitted";}
 		else{ echo "Not Submitted";}
 		//echo "dsdfsd";
