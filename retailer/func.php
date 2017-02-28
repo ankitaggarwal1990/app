@@ -24,7 +24,7 @@ if(isset($_POST['place_order'])){
 $result = sqlsrv_query($conn,$sql);
 
 
-$query2 = "SELECT DISTINCT MAX(order_id) FROM orders";
+$query2 = "SELECT order_id from orders where order_id=(select DISTINCT MAX(order_id) FROM orders)";
 $result2 = sqlsrv_query($conn,$query2);
 $orderid =0;
 while($row2 = sqlsrv_fetch_array($result2, SQLSRV_FETCH_ASSOC)) {
