@@ -87,7 +87,7 @@ td {
 
 
 //mysqli_select_db($con,"ajax_demo");
-$sql="SELECT DISTINCT order_id,destination_id FROM orders where orderstatus=1";
+$sql="SELECT DISTINCT order_id,destination_id,transport_id,rfid_tag_id FROM orders where orderstatus=1";
 
 $result = sqlsrv_query($conn,$sql);
 
@@ -110,31 +110,20 @@ while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 
 <td><a href="orderid.php?order_id=<?php echo $row['order_id'] ?>"><?php echo $row['order_id'] ?></a> </td>
 
-<td><?php
-$rfid_sql = "SELECT rfid_id FROM rfid_details where status=0";
-$rfid_result = sqlsrv_query($conn,$rfid_sql);
-
-echo "<select class='select'" ;
-while ($rfid_row = sqlsrv_fetch_array($rfid_result, SQLSRV_FETCH_ASSOC)) {
-	
-    echo "name='rfid_".$row['order_id']."'><option value='".$rfid_row['rfid_id']."'>".$rfid_row['rfid_id'] ."</option>";
-	
-}
-echo "</select>";
+td><?php
+echo $row['rgid_tag_id'];
 
 ?></td>
 
 	<td><?php
-$transporter_sql = "SELECT * FROM `transporter` where status=0";
+$transporter_sql = "SELECT * FROM `transporter` where tranportID='$row['transport_id']";
 $transporter_result = sqlsrv_query($conn,$transporter_sql);
 
-echo "<select class='select' ";
 while ($transporter_row = sqlsrv_fetch_array($transporter_result, SQLSRV_FETCH_ASSOC)) {
 	
-    echo "name='transporter".$row['order_id']."'><option value='".$transporter_row['TransporterID']."'>".$transporter_row['TransporterName'] ."</option>";
+    echo $transporter_row['TransporterName'];
 	
 }
-echo "</select>";
 ?></td>
 	
 </tr>
