@@ -23,7 +23,7 @@ $type = $_POST['producttype'];
 $productprice = $_POST['productprice'];
 $perishduration   = $_POST['perishduration'];
 $weight = $_POST['weight'];
-	$query = "INSERT INTO `products` (`productID`, `productType`, `productPrice`, `perishDuration`, `productweight`, `product_name`, `productstatus`) VALUES ('$product', '$type', '$productprice', '$perishduration', '$weight', '$name1', 0)";
+	$query = "INSERT INTO products (productID, productType, productPrice, perishDuration, productweight, product_name, productstatus) VALUES ('$product', '$type', '$productprice', '$perishduration', '$weight', '$name1', 0)";
 	
 	//mysql_select_db('database');
 	//$retval = mysql_query($query,$conn);
@@ -50,7 +50,7 @@ $acct_number = $_POST[accountnumber];
 $phone_number   = $_POST[phonenumber];
 
 
-	$query = "INSERT INTO `transporter` (`TransporterID`, `TransporterName`, `AccountNo`, `Ph no`) VALUES ('$id', '$name', '$acct_number', '$phone_number')";
+	$query = "INSERT INTO transporter (TransporterID, TransporterName, AccountNo, Ph no) VALUES ('$id', '$name', '$acct_number', '$phone_number')";
 	
 	//mysql_select_db('database');
 	//$retval = mysql_query($query,$conn);
@@ -79,7 +79,7 @@ $locationID   = $_POST[locationID];
 $devicenames   = $_POST[devicenames];
 
 
-	$query = "INSERT INTO `devices`(`Deviceid`, `DeviceType`, `DeviceKey`, `hostname`, `Locationid`, `isMovable`, `DeviceName`) VALUES ('$deviceid', '$devicetype', '$devicekey', '$hostname', '$locationID', '$movable', '$devicenames')";
+	$query = "INSERT INTO devices(Deviceid, DeviceType, DeviceKey, hostname, Locationid, isMovable, DeviceName) VALUES ('$deviceid', '$devicetype', '$devicekey', '$hostname', '$locationID', '$movable', '$devicenames')";
 	
 	//mysql_select_db('database');
 	//$retval = mysql_query($query,$conn);
@@ -106,7 +106,7 @@ $locationid = $_POST[locationid];
 $retailername = $_POST[retailername];
 
 
-	$query = "INSERT INTO `retailer`(`RetailerID`, `LocationID`, `RetailerName`) VALUES ('$retailerid', '$locationid', '$retailername')";
+	$query = "INSERT INTO retailer(RetailerID, LocationID, RetailerName) VALUES ('$retailerid', '$locationid', '$retailername')";
 	
 	//mysql_select_db('database');
 	//$retval = mysql_query($query,$conn);
@@ -136,7 +136,7 @@ $location = $_POST[location];
 $contact_no = $_POST[contact_no];
 
 
-	$query = "INSERT INTO `warehouse`(`warehouse_name`, `warehouse_id`, `location`, `contact_no`) VALUES ('$warehouseid', '$warehousename', '$location', '$contact_no')";
+	$query = "INSERT INTO warehouse(warehouse_name, warehouse_id, location, contact_no) VALUES ('$warehouseid', '$warehousename', '$location', '$contact_no')";
 	
 	//mysql_select_db('database');
 	//$retval = mysql_query($query,$conn);
@@ -182,7 +182,7 @@ while($row = sqlsrv_fetch_array($result)) {
 	if(isset($_POST[$product])){
 		$quantity1 = "quantity".$_POST[$product];
 		echo $quantity = $_POST[$quantity1];
-		$sql = "UPDATE `rfid_details` SET `rfid_id`=[value-1],`type`=[value-2],`product_id`=[value-3],`status`=[value-4] ";
+		$sql = "UPDATE rfid_details SET rfid_id=[value-1],type=[value-2],product_id=[value-3],status=[value-4] ";
 		
 		$result1 = sqlsrv_query($conn,$sql);
 		if($result1){ echo "Submitted";}
