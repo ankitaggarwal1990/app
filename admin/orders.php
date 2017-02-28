@@ -87,7 +87,7 @@ td {
 
 
 //mysqli_select_db($con,"ajax_demo");
-$sql="SELECT DISTINCT order_id,destination_id FROM orders where status=1";
+$sql="SELECT DISTINCT order_id,destination_id FROM orders where orderstatus=1";
 
 $result = sqlsrv_query($conn,$sql);
 
