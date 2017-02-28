@@ -108,7 +108,7 @@ while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 ?>
 	
 
-<td><input class='select' name="order_id<?php echo $row['order_id'] ?>" value="<?php echo $row['order_id'] ?>" readonly="readonly"> </td>
+<td><a class="select" href="orderid?order_id=<?php echo $row['order_id'] ?>><?php $row['order_id'] ?></a> </td>
 
 <td><?php
 $rfid_sql = "SELECT rfid_id FROM rfid_details where status=0";
