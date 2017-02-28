@@ -86,10 +86,10 @@ td {
 //echo $value;
 
 
-mysqli_select_db($con,"ajax_demo");
+//mysqli_select_db($con,"ajax_demo");
 $sql="SELECT DISTINCT order_id,destination_id FROM orders where status=1";
 
-$result = mysqli_query($con,$sql);
+$result = sqlsrv_query($conn,$sql);
 
 ?>
 <div>
@@ -104,7 +104,7 @@ $result = mysqli_query($con,$sql);
 <form action="func.php" method="POST"> 
 <?php
 $total_amount= 0;
-while($row = mysqli_fetch_array($result)) {
+while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 ?>
 	
 
@@ -112,10 +112,10 @@ while($row = mysqli_fetch_array($result)) {
 
 <td><?php
 $rfid_sql = "SELECT rfid_id FROM rfid_details where status=0";
-$rfid_result = mysqli_query($con,$rfid_sql);
+$rfid_result = sqlsrv_query($conn,$rfid_sql);
 
 echo "<select class='select'" ;
-while ($rfid_row = mysqli_fetch_array($rfid_result)) {
+while ($rfid_row = sqlsrv_fetch_array($rfid_result, SQLSRV_FETCH_ASSOC)) {
 	
     echo "name='rfid_".$row['order_id']."'><option value='".$rfid_row['rfid_id']."'>".$rfid_row['rfid_id'] ."</option>";
 	
@@ -126,10 +126,10 @@ echo "</select>";
 
 	<td><?php
 $transporter_sql = "SELECT * FROM `transporter` where status=0";
-$transporter_result = mysqli_query($con,$transporter_sql);
+$transporter_result = sqlsrv_query($conn,$transporter_sql);
 
 echo "<select class='select' ";
-while ($transporter_row = mysqli_fetch_array($transporter_result)) {
+while ($transporter_row = sqlsrv_fetch_array($transporter_result, SQLSRV_FETCH_ASSOC)) {
 	
     echo "name='transporter".$row['order_id']."'><option value='".$transporter_row['TransporterID']."'>".$transporter_row['TransporterName'] ."</option>";
 	
@@ -139,13 +139,13 @@ echo "</select>";
 	
 </tr>
 	  <?php }
-mysqli_close($con);
+//mysqli_close($con);
 
 
 ?>
 
-<tr><td></td><td></td><td><button class="select" name="attach_rfid" type="submit" placeholder="Submit" >Submit</button></td>
-  </form></tr>
+<!--<tr><td></td><td></td><td><button class="select" name="attach_rfid" type="submit" placeholder="Submit" >Submit</button></td>
+ </tr>--> </form>
 
 </table>
 
