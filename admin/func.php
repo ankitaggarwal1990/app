@@ -28,7 +28,9 @@ $weight = $_POST['weight'];
 	//mysql_select_db('database');
 	//$retval = mysql_query($query,$conn);
 	$query1 = sqlsrv_query($conn,$query);
-	
+	if( $query1 === false ) {
+     die( print_r( sqlsrv_errors(), true));
+}
 	
 	if($query1)
 	{
