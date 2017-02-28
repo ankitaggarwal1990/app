@@ -96,26 +96,22 @@ $result = sqlsrv_query($conn,$sql);
 <table> 
 <tr>
 <th>ORDER ID</th>
-
-<th>RFID TAG</th>
-<th>TRANSPORT ID</th>
+	<th>RFID TAG</th>
+<th>TRANSPORT NAME</th>
 </tr>
 <tr>
-<form action="func.php" method="POST"> 
 <?php
 $total_amount= 0;
 while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 ?>
-	
-
 <td><a href="orderid.php?order_id=<?php echo $row['order_id'] ?>"><?php echo $row['order_id'] ?></a> </td>
 
-td><?php
+<td><?php
 echo $row['rgid_tag_id'];
 
 ?></td>
 
-	<td><?php
+	<td><?php echo $row['transport_id'];
 //$transporter_sql = "SELECT * FROM `transporter` where tranportID='$row['transport_id']'";
 //$transporter_result = sqlsrv_query($conn,$transporter_sql);
 
@@ -134,7 +130,7 @@ echo $row['rgid_tag_id'];
 ?>
 
 <!--<tr><td></td><td></td><td><button class="select" name="attach_rfid" type="submit" placeholder="Submit" >Submit</button></td>
- </tr>--> </form>
+</tr> -->
 
 </table>
 
