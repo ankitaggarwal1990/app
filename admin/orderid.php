@@ -109,10 +109,10 @@ td {
 <?php 
 $orderid = $_GET['order_id'];
 
-mysqli_select_db($con,"ajax_demo");
+//mysqli_select_db($con,"ajax_demo");
 $sql="SELECT * FROM orders where order_id='$orderid'";
 
-$result = mysqli_query($con,$sql);
+$result = sqlsrv_query($conn,$sql);
 
 ?>
 <div>
@@ -131,7 +131,7 @@ $result = mysqli_query($con,$sql);
 <tr>
 <?php
 $total_amount= 0;
-while($row = mysqli_fetch_array($result)) {
+while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 ?>
 	
 
@@ -142,11 +142,11 @@ while($row = mysqli_fetch_array($result)) {
 <td><?php echo "PROD".$product_id=$row['product_id'];    
 
 $product_sql = "SELECT * FROM products where productID='$product_id'";
-$product_result = mysqli_query($con,$product_sql);
+$product_result = sqlsrv_query($conn,$product_sql);
 
 ?> </td>
     <td><?php
-while ($product_row = mysqli_fetch_array($product_result)) {
+while ($product_row = sqlsrv_fetch_array($product_result, SQLSRV_FETCH_ASSOC)) {
 	
     echo $product_row['product_name'];
 	
@@ -156,26 +156,13 @@ while ($product_row = mysqli_fetch_array($product_result)) {
 
 <td><?php
 $rfid_sql = "SELECT * FROM rfid_details where product_id='$product_id'";
-$rfid_result = mysqli_query($con,$rfid_sql);
+$rfid_result = sqlsrv_query($conn,$rfid_sql);
 
-while ($rfid_row = mysqli_fetch_array($rfid_result)) {
+while ($rfid_row = sqlsrv_fetch_array($rfid_result, SQLSRV_FETCH_ASSOC)) {
 	
     echo $rfid_id=$rfid_row['rfid_id'];
 	
 	
-	try {
-    $conn = new PDO("sqlsrv:server = tcp:trident1.database.windows.net,1433; Database = database_azure", "trident", "password@123");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
-
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "trident@trident1", "pwd" => "password@123", "Database" => "database_azure", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:trident1.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
 $tag_sql = "SELECT * FROM runtime_data where TagID='$rfid_id'";
 $tag_result = sqlsrv_query( $conn,$tag_sql);
 
