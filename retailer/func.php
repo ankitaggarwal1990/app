@@ -54,7 +54,7 @@ echo $orderid;
 //	}
 	
 	
-}
+//}
 	
 //	header('Location: finalorder.php?order='.$orderid.'');
 	//echo "asdfghjkl";
