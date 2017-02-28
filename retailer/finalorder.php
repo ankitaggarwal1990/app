@@ -62,15 +62,25 @@ td {
 $value = $_GET['order'];
 
 //echo $value;
-$con = mysqli_connect('127.0.0.1:49646','azure','6#vWHD_$','localdb');
-if (!$con) {
-    die('Could not connect: ' . mysqli_error($con));
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:trident1.database.windows.net,1433; Database = database_azure", "trident", "password@123");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
 }
 
-mysqli_select_db($con,"ajax_demo");
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "trident@trident1", "pwd" => "password@123", "Database" => "database_azure", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:trident1.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
+
+//mysqli_select_db($con,"ajax_demo");
 $sql="SELECT * FROM orders WHERE order_id='$value'";
 
-$result = mysqli_query($con,$sql);
+$result = sqlsrv_query($conn,$sql);
 
 ?>
 <div>
@@ -86,13 +96,13 @@ $result = mysqli_query($con,$sql);
 </tr>
 <?php
 $total_amount= 0;
-while($row = mysqli_fetch_array($result)) {
+while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 	
 	$productid = $row['product_id'];
 	$sql1="SELECT * FROM products WHERE productID='$productid'";
 
-    $result1 = mysqli_query($con,$sql1);
-      while($row1 = mysqli_fetch_array($result1)) {
+    $result1 = sqlsrv_query($conn,$sql1);
+      while($row1 =sqlsrv_fetch_array($result1, SQLSRV_FETCH_ASSOC)) {
 ?>
 	
 <tr>
