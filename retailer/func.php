@@ -34,29 +34,29 @@ while($row2 = sqlsrv_fetch_array($result2, SQLSRV_FETCH_ASSOC)) {
 	$orderid= $orderid + 1;
 
 echo $orderid;
-//while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-//	echo $row['productID'];
+while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+	echo $row['productID'];
 	
-//	echo $product = $row['productID'];
-//	if(isset($_POST[$product])){
-//		$quantity1 = "quantity".$_POST[$product];
-//		echo $quantity = $_POST[$quantity1];
+	echo $product = $row['productID'];
+	if(isset($_POST[$product])){
+		$quantity1 = "quantity".$_POST[$product];
+		echo $quantity = $_POST[$quantity1];
 		//$sql = "INSERT INTO `orders`(`order_id`, `product_id`, `quantity`, `rfid_tag_id`, `destination_id`, `transport_id`, `delivery_time`, `product_total_amount`, `status`) VALUES ('$orderid','$product','$quantity',0,0,0,NOW(),0,1)";
 		//$query = "INSERT INTO `orders`(`order_id`, `product_id`, `quantity`, `rfid_tag_id`, `destination_id`, `delivery_time`, `transport_id`, `product_total_amount`) VALUES ('$orderid','$product','$quantity',1,1,1,now(),1)"
 		
-//		$sql = "INSERT INTO orders(order_id, product_id, quantity, rfid_tag_id, destination_id, transport_id,delivery_time, product_total_amount, retailer_id, orderstatus, product_status) VALUES ('$orderid','$product','$quantity',0,0,0,DEFAULT,0,1,1,1)";
+		$sql = "INSERT INTO orders(order_id, product_id, quantity, rfid_tag_id, destination_id, transport_id,delivery_time, product_total_amount, retailer_id, orderstatus, product_status) VALUES ('$orderid','$product','$quantity',0,0,0,DEFAULT,0,1,1,1)";
 		
 		
-//		$result1 = sqlsrv_query($conn,$sql);
-//		if($result1){ echo "Submitted";}
-//		else{ echo "Not Submitted";}
+		$result1 = sqlsrv_query($conn,$sql);
+		if($result1){ echo "Submitted";}
+		else{ echo "Not Submitted";}
 		//echo "dsdfsd";
-//	}
+	}
 	
 	
-//}
+}
 	
-//	header('Location: finalorder.php?order='.$orderid.'');
+	header('Location: finalorder.php?order='.$orderid.'');
 	//echo "asdfghjkl";
 }
 
