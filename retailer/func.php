@@ -1,34 +1,40 @@
 <?php 
 print_r($_POST);
 
-$con = mysqli_connect('127.0.0.1:49646','azure','6#vWHD_$','localdb');
-if (!$con) {
-    die('Could not connect: ' . mysqli_error($con));
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:trident1.database.windows.net,1433; Database = database_azure", "trident", "password@123");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
-else{
-	echo "connect";
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
 }
 
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "trident@trident1", "pwd" => "password@123", "Database" => "database_azure", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:trident1.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
 
 if(isset($_POST['place_order'])){
 
 	
 	$sql="SELECT * FROM products";
 
-$result = mysqli_query($con,$sql);
+$result = sqlsrv_query($conn,$sql);
 
 
 $query2 = "SELECT * FROM `orders` WHERE order_id=(SELECT MAX(order_id) FROM `orders`)";
-$result2 = mysqli_query($con,$query2);
+$result2 = sqlsrv_query($conn,$query2);
 $orderid =0;
-while($row2 = mysqli_fetch_array($result2)) {
+while($row2 = sqlsrv_fetch_array($result2)) {
  echo $orderid = $row2['order_id'];
 }
 	
 	$orderid= $orderid + 1;
 
 echo $orderid;
-while($row = mysqli_fetch_array($result)) {
+while($row = sqlsrv_fetch_array($result)) {
 	echo $row['productID'];
 	
 	echo $product = $row['productID'];
@@ -41,7 +47,7 @@ while($row = mysqli_fetch_array($result)) {
 		$sql = "INSERT INTO `orders`(`order_id`, `product_id`, `quantity`, `rfid_tag_id`, `destination_id`, `transport_id`, `delivery_time`, `product_total_amount`, `retailer_id`, `status`, `product_status`) VALUES ('$orderid','$product','$quantity',0,0,0,NOW(),0,1,1,1)";
 		
 		
-		$result1 = mysqli_query($con,$sql);
+		$result1 = sqlsrv_query($conn,$sql);
 		if($result1){ echo "Submitted";}
 		else{ echo "Not Submitted";}
 		//echo "dsdfsd";
@@ -58,7 +64,7 @@ if(isset($_POST['final_order']))
 {
 	$orderno = $_POST['final_order'];
 	$query = "UPDATE `orders` SET `status`=1 WHERE `order_id`= $orderno";		
-    $result1 = mysqli_query($con,$query);
+    $result1 = sqlsrv_query($conn,$query);
 	header('Location: orders.php');
 	
 	
