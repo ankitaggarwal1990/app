@@ -116,14 +116,14 @@ echo $row['rgid_tag_id'];
 ?></td>
 
 	<td><?php
-$transporter_sql = "SELECT * FROM `transporter` where tranportID='$row['transport_id']'";
-$transporter_result = sqlsrv_query($conn,$transporter_sql);
+//$transporter_sql = "SELECT * FROM `transporter` where tranportID='$row['transport_id']'";
+//$transporter_result = sqlsrv_query($conn,$transporter_sql);
 
-while ($transporter_row = sqlsrv_fetch_array($transporter_result, SQLSRV_FETCH_ASSOC)) {
+//while ($transporter_row = sqlsrv_fetch_array($transporter_result, SQLSRV_FETCH_ASSOC)) {
 	
-    echo $transporter_row['TransporterName'];
+//    echo $transporter_row['TransporterName'];
 	
-}
+//}
 ?></td>
 	
 </tr>
